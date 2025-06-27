@@ -1,0 +1,34 @@
+<mat-toolbar class="custom-toolbar">
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuServer" class="btn-rojo">
+      <mat-icon>computer</mat-icon>
+      Servidores
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuAplicacion" class="btn-rojo">
+      <mat-icon>settings_cell</mat-icon>
+      Aplicaciones
+    </button>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuReportes" class="btn-rojo">
+      <mat-icon>file_copy</mat-icon>
+      Reportes
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menuServer="matMenu">
+  <button mat-menu-item routerLink="/servidores">Listar</button>
+  <button mat-menu-item routerLink="/servidores/formulario">Registrar</button>
+  <button mat-menu-item routerLink="/servidores/busquedasproveedor">Buscar por proveedor</button>
+</mat-menu>
+<mat-menu #menuAplicacion="matMenu">
+  <button mat-menu-item routerLink="/aplicaciones">Listar</button>
+  <button mat-menu-item routerLink="/aplicaciones/insercion">Registrar</button>
+</mat-menu>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">Suma</button>
+  <button mat-menu-item routerLink="/reportes/cantidades">Cantidad</button>
+</mat-menu>

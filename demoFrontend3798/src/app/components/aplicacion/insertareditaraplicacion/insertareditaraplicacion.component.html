@@ -1,0 +1,68 @@
+<div class="container">
+  <div style="text-align: center;margin: 5%;">
+    <h1>Registro de aplicaciones</h1>
+  </div>
+  <div style="text-align: center;margin: 5%;">
+
+    <form [formGroup]="form" (submit)=" aceptar()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Aplicación</mat-label>
+        <input matInput placeholder="Ex. App1" formControlName="nombrecito">
+        <mat-error *ngIf="form.get('nombrecito')?.hasError('required')">
+          La app es obligatoria!!
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+      <mat-radio-group aria-label="Select an option" formControlName="estado" [ngModel]="status">
+        <mat-radio-button [value]="true">Activa</mat-radio-button>
+        <mat-radio-button [value]="false">Inactiva</mat-radio-button>
+      </mat-radio-group>
+
+      <br>
+
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('fecha')?.hasError('required')">
+          La fecha es obligatoria!!
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Monto</mat-label>
+        <input matInput placeholder="120000" formControlName="monto">
+        <mat-error *ngIf="form.get('monto')?.hasError('required')">
+          El monto es obligatorio!!
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo">
+          @for (food of tipos; track food) {
+          <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+
+      <br>
+      <mat-form-field>
+        <mat-label>Servidores</mat-label>
+        <mat-select formControlName="servidor">
+          @for (food of listaServidores; track food) {
+          <mat-option [value]="food.idServer">{{food.nameServer}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary">Aceptar</button>
+
+    </form>
+  </div>
+</div>
