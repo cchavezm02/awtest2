@@ -1,0 +1,12 @@
+<mat-toolbar class="custom-toolbar">
+    <div>
+        <button mat-button [matMenuTriggerFor]="menuActividad" class="btn-rojo">
+            <mat-icon>computer</mat-icon>
+            actividades
+        </button>
+    </div>
+</mat-toolbar>
+<mat-menu #menuActividad="matMenu">
+    <button mat-menu-item routerLink="/actividades">Listar</button>
+    <button mat-menu-item routerLink="/actividad/formulario">Registrar</button>
+</mat-menu>

@@ -1,0 +1,81 @@
+<div class="container">
+    <div style="text-align: center;margin: 5%;">
+        <h1>Registro de servidores</h1>
+    </div>
+    <div style="text-align: center;">
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field *ngIf="edicion">
+                <mat-label>ID</mat-label>
+                <input matInput formControlName="acid">
+
+                <mat-error *ngIf="form.get('acid')?.hasError('required')">
+                    El acid del servidor es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+                <mat-label>acdenominacion</mat-label>
+                <input matInput formControlName="acdenominacion">
+
+                <mat-error *ngIf="form.get('acdenominacion')?.hasError('required')">
+                    El nombre del servidor es obligatorio!!
+                </mat-error>
+                <mat-error *ngIf="form.get('acdenominacion')?.hasError('minlength')">
+                    La denominación debe tener mínimo 8 caracteres!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <br>
+            <mat-form-field>
+                <mat-label>actipo</mat-label>
+                <mat-select formControlName="actipo">
+                    <mat-option *ngFor="let t of tiposac" [value]="t.value">
+                        {{t.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('actipo')?.hasError('required')">
+                    El tipo de actividad es obligatorio!!
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <mat-label>actiempomin</mat-label>
+                <input matInput type="number" formControlName="actiempomin">
+
+                <mat-error *ngIf="form.get('actiempomin')?.hasError('required')">
+                    El tiempo mínimo de actividad es obligatorio!!
+                </mat-error>
+                <mat-error *ngIf="form.get('actiempomin')?.hasError('min')">
+                    El tiempo no puede ser menor a 0 minutos!!
+                </mat-error>
+                <mat-error *ngIf="form.get('actiempomin')?.hasError('max')">
+                    El tiempo no puede ser mayor a 300 minutos!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="acfecha">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('acfecha')?.hasError('required')">
+                    La fecha es obligatoria!!
+                </mat-error>
+                <mat-error *ngIf="form.get('acfecha')?.hasError('fechaFutura')">
+                    La fecha debe ser pasada (anterior a hoy)!!
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-checkbox formControlName="acestado">
+                Actividad Activa
+            </mat-checkbox>
+            <br>
+            <button mat-raised-button color="primary">Aceptar</button>
+            <button mat-raised-button color="warn" routerLink="/actividad">
+                Cancelar
+            </button>
+        </form>
+    </div>
+    </div>

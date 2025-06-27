@@ -1,0 +1,72 @@
+<div class="container">
+    <div style="text-align: center;margin: 5%;">
+        <h1>Lista de servidores</h1>
+    </div>
+    <div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="c1">
+                <th mat-header-cell *matHeaderCellDef> ID. </th>
+                <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="c2">
+                <th mat-header-cell *matHeaderCellDef> denominacion </th>
+                <td mat-cell *matCellDef="let element"> {{element.denominacion}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="c3">
+                <th mat-header-cell *matHeaderCellDef> tipo </th>
+                <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="c4">
+                <th mat-header-cell *matHeaderCellDef> tiempoMinutos </th>
+                <td mat-cell *matCellDef="let element"> {{element.tiempoMinutos}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="c5">
+                <th mat-header-cell *matHeaderCellDef> fecha </th>
+                <td mat-cell *matCellDef="let element"> {{element.fecha|date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="c6">
+                <th mat-header-cell *matHeaderCellDef> estado </th>
+                <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="c7">
+                <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+                <td mat-cell *matCellDef="let element">
+                    <button matButton [routerLink]="['ediciones',element.codigo]">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="c8">
+                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                <td mat-cell *matCellDef="let element">
+                    <button matButton (click)="eliminar(element.codigo)">
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator 
+            [pageSizeOptions]="[4, 8, 10]" 
+            [pageSize]="4"
+            showFirstLastButtons>
+        </mat-paginator>
+
+    </div>
+    </div>
